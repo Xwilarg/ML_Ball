@@ -1,5 +1,6 @@
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 public class AIController : Agent
@@ -16,6 +17,12 @@ public class AIController : Agent
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+    }
+
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        sensor.AddObservation(new Vector2(transform.localPosition.x, transform.localPosition.z));
+        sensor.AddObservation(new Vector2(Manager.Ball.transform.localPosition.x, Manager.Ball.transform.localPosition.z));
     }
 
     public override void OnActionReceived(ActionBuffers actions)

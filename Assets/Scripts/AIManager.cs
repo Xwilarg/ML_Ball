@@ -9,8 +9,7 @@ public class AIManager : MonoBehaviour
     [SerializeField]
     private AIController[] _agents;
 
-    [SerializeField]
-    private GameObject _ball;
+    public GameObject Ball;
 
     private void Start()
     {
@@ -41,6 +40,6 @@ public class AIManager : MonoBehaviour
 
     private void BeginGroupEpisode()
     {
-        _ball.transform.position = new Vector3(Random.Range(-5f, 5f), 2f, Random.Range(-5f, 5f));
+        Ball.transform.localPosition = new Vector3(Random.Range(-5f, 5f), 2f, Random.Range(-5f, 5f));
     }
 }
