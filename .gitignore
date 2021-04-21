@@ -1,5 +1,6 @@
 .vsconfig
 results/
+Assets/ML-Agents/Timers/Main_timers.json
 
 # This .gitignore file should be placed at the root of your Unity project directory
 #
