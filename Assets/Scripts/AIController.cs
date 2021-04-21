@@ -7,7 +7,11 @@ public class AIController : Agent
     private Rigidbody _rb;
 
     private const float _speed = 10f;
-    private const float _rotSpeed = 5f;
+    private const float _rotSpeed = 10f;
+
+    public int TeamID;
+
+    public AIManager Manager { set; get; }
 
     private void Start()
     {
@@ -33,5 +37,13 @@ public class AIController : Agent
 
         transform.Rotate(transform.up, rotDir * Time.deltaTime);
         _rb.AddForce(transform.forward * forwardDir + transform.right * rightDir);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ball"))
+        {
+            Manager.TouchBall(TeamID);
+        }
     }
 }
