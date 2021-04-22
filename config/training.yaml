@@ -1,3 +1,4 @@
 behaviors:
   Brawler:
     trainer_type: poca
+    max_steps: 5000000

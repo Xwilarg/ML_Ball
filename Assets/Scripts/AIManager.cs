@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.MLAgents;
 using UnityEngine;
 
@@ -24,7 +25,15 @@ public class AIManager : MonoBehaviour
             else
                 _teams[a.TeamID].RegisterAgent(a);
             a.Manager = this;
-            BeginGroupEpisode();
+        }
+        BeginGroupEpisode();
+    }
+
+    private void Update()
+    {
+        if (Ball.transform.localPosition.y < 0f || _agents.Any(x => x.transform.localPosition.y < 0f))
+        {
+            TouchBall(-1);
         }
     }
 
@@ -40,6 +49,10 @@ public class AIManager : MonoBehaviour
 
     private void BeginGroupEpisode()
     {
+        foreach (var a in _agents)
+        {
+            a.transform.localPosition = new Vector3(Random.Range(-5f, 5f), 1f, Random.Range(-5f, 5f));
+        }
         Ball.transform.localPosition = new Vector3(Random.Range(-5f, 5f), 2f, Random.Range(-5f, 5f));
     }
 }

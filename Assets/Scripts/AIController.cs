@@ -19,12 +19,6 @@ public class AIController : Agent
         _rb = GetComponent<Rigidbody>();
     }
 
-    public override void CollectObservations(VectorSensor sensor)
-    {
-        sensor.AddObservation(new Vector2(transform.localPosition.x, transform.localPosition.z));
-        sensor.AddObservation(new Vector2(Manager.Ball.transform.localPosition.x, Manager.Ball.transform.localPosition.z));
-    }
-
     public override void OnActionReceived(ActionBuffers actions)
     {
         var forward = actions.DiscreteActions[0];
