@@ -33,7 +33,9 @@ public class AIManager : MonoBehaviour
     {
         if (Ball.transform.localPosition.y < 0f || _agents.Any(x => x.transform.localPosition.y < 0f))
         {
-            TouchBall(-1);
+            foreach (var t in _teams)
+                t.Value.EndGroupEpisode();
+            BeginGroupEpisode();
         }
     }
 
